@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Store Locations</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Header -->
+          <header id="header">
+            <div class="inner">
+
+              <!-- Logo -->
+                <a href="index.html" class="logo">
+                  <span class="symbol"><img src="https://openclipart.org/image/2400px/svg_to_png/168967/green.png" alt="" /></span><span class="title">G R E E N ◦ P O C K E T</span>
+                </a>
+
+              <!-- Nav ⚃-->
+                <nav>
+                  <ul>
+                    <li><a href="#menu">Menu</a></li>
+                  </ul>
+                </nav>
+
+            </div>
+          </header>
+
+        <!-- Menu -->
+          <nav id="menu">
+            <h2>Menu</h2>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="produce.html">Produce</a></li>
+              <li><a href="protein.html">Protein</a></li>
+              <li><a href="dairy.html">Dairy</a></li>
+              <li><a href="starch.html">Starch</a></li>
+            </ul>
+          </nav>
+          <h1>Store Locations</h1>
+          <p><li>1. Navigate thorugh the map by using the cursor.</li>
+          <li>2. Zoom in/out into the store of choice by using the +/- sign.</li>
+          <li>3. Place the orange man on the sore of choice to see street view.</li></p> 
+
+
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+  <div id="map" style="height: 800px; width: 700px;">
+</div>
+<script type="text/javascript">
+    var locations = [
+      ['Target', 37.3738, -122.0323, 4],
+      ['Little Yosemite', 37.5127517, -121.82921529999999, 5],
+      ['Jack London Square', 37.7953389, -122.27685689999998, 3],
+      ['Marina', 37.6985113, -122.19074230000001, 2],
+      ['Philz Coffee', 37.8506869, -122.25208650000002, 1],
+      ['Howden Market', 37.8055 , -122.2672],
+      ['Safeway', 37.804363, -122.271111],
+      ['Grocery Outlet Bargain Market',37.801239, -122.258301 ],
+      ['Mandela Foods Cooperative', 37.8053, -37.8053],
+      ['Nature Best Food', 37.8027, -122.2650],
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(37.8328598, -122.2840031),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+</script>
+
+
+</body>
+</html>
+
